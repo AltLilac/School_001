@@ -20,7 +20,7 @@ private:
 public:
 	Player();
 
-	void DrawPlayer() const;
+	Rect DrawPlayer() const;
 
 	void InputPlayer();
 };
