@@ -7,11 +7,10 @@
 class TitleScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
+	Point titlePos, pressKeyPos;
 
 public:
-	TitleScene(const InitData& init) : IScene(init) {
-
-	}
+	TitleScene(const InitData& init);
 
 	void draw() const override;
 

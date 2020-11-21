@@ -25,6 +25,7 @@ void MainGameScene::draw() const {
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos);
 
+		// ŠÔØ‚ê‚É‚È‚Á‚½‚ÌUI
 		if (currentTime <= 0) {
 			FontAsset(U"MainGameUiFont")(U"Time Over!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
 			FontAsset(U"MainGameUiFont")(U"Time Over!").drawAt(centerPos);

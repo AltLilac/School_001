@@ -8,6 +8,7 @@
 class ResultScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
+	Point pressKeyPos;
 	// MainGameScene mGameScene;
 
 public:
