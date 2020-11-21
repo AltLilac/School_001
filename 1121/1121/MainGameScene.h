@@ -11,12 +11,14 @@ private:
 	Player    player;
 	Stopwatch stopwatch;
 	Vec2      timeUiPos;	// タイマーの表示位置
+	Point     centerPos;
 
 	// 制限時間
 	const int defaultTime;
 	int       currentTime;
 
 	bool isPlaying;
+	bool showTimer;
 
 public:
 	MainGameScene(const InitData& init);

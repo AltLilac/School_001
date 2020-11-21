@@ -1,7 +1,8 @@
 #include <Siv3D.hpp>
 #include "MainGameScene.h"
 
-MainGameScene::MainGameScene(const InitData& init) : IScene(init), defaultTime(10), isPlaying(true), timeUiPos(380, 35) {
+MainGameScene::MainGameScene(const InitData& init)
+	: IScene(init), defaultTime(10), isPlaying(true), showTimer(true), timeUiPos(380, 35), centerPos(400, 300) {
 	
 }
 
@@ -20,10 +21,16 @@ void MainGameScene::draw() const {
 	player.DrawPlayer();
 
 	// ストップウォッチが開始したらタイマーを表示
-	if (stopwatch.isStarted()) {
+	if (stopwatch.isStarted() && showTimer) {
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos);
+
+		if (currentTime <= 0) {
+			FontAsset(U"MainGameUiFont")(U"Time Over!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
+			FontAsset(U"MainGameUiFont")(U"Time Over!").drawAt(centerPos);
+		}
 	}
+
 }
 
 void MainGameScene::update() {
@@ -36,10 +43,17 @@ void MainGameScene::update() {
 	currentTime = defaultTime - stopwatch.s64();
 
 	// 制限時間が0になったら
-	if (currentTime <= 0) {
+	if (currentTime < 0) {
 		currentTime = currentTime;
-		stopwatch.pause();
 		isPlaying = false;
+
+		stopwatch.pause();
+		System::Sleep(3000);
+
 		changeScene(U"Result");
+	}
+
+	if (stopwatch.isPaused()) {
+		showTimer = false;
 	}
 }

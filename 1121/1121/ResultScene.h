@@ -8,6 +8,7 @@
 class ResultScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
+	// MainGameScene mGameScene;
 
 public:
 	ResultScene(const InitData& init);

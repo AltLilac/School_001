@@ -12,13 +12,14 @@ void Main() {
 	FontAsset::Register(U"TitleFont", 60, Typeface::Medium);
 	FontAsset::Register(U"TimeLimitFont", 45, Typeface::Medium);
 	FontAsset::Register(U"ResultFont", 45, Typeface::Medium);
+	FontAsset::Register(U"MainGameUiFont", 45, Typeface::Medium);
 
 	App manager;
 
 	manager.add<TitleScene>(U"Title");
 	manager.add<MainGameScene>(U"MainGame");
 	manager.add<ResultScene>(U"Result");
-	
+
 	while (System::Update()) {
 
 		if (!manager.update()) {
