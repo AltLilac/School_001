@@ -3,6 +3,7 @@
 
 #include <Siv3D.hpp>
 #include "Debug.h"
+#include "MainGameScene.h"
 
 class ResultScene : public SceneManager<String>::Scene {
 private:

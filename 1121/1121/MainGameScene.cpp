@@ -35,7 +35,9 @@ void MainGameScene::update() {
 
 	currentTime = defaultTime - stopwatch.s64();
 
+	// §ŒÀŠÔ‚ª0‚É‚È‚Á‚½‚ç
 	if (currentTime <= 0) {
+		currentTime = currentTime;
 		stopwatch.pause();
 		isPlaying = false;
 		changeScene(U"Result");

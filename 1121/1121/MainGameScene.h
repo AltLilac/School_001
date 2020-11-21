@@ -24,6 +24,8 @@ public:
 	void draw() const override;
 
 	void update() override;
+
+	int GetCurrentTime() const { return currentTime; }
 };
 
 #endif

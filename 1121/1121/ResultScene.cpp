@@ -12,6 +12,7 @@ void ResultScene::draw() const {
 
 	FontAsset(U"ResultFont")(U"ResultScene").drawAt(400, 150);
 	FontAsset(U"ResultFont")(U"Press Enter Key to Continue...").drawAt(400, 500);
+	// FontAsset(U"ResultFont")(U"{}{}{}"_fmt(U"Your Score", U" : ", mGameScene.GetCurrentTime() * 10)).drawAt(400, 200);
 }
 
 void ResultScene::update() {
