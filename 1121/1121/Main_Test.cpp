@@ -12,7 +12,7 @@ void Main() {
 	FontAsset::Register(U"TitleFont", 60, Typeface::Medium);
 	FontAsset::Register(U"TimeLimitFont", 45, Typeface::Medium);
 	FontAsset::Register(U"ResultFont", 45, Typeface::Medium);
-	FontAsset::Register(U"MainGameUiFont", 45, Typeface::Medium);
+	FontAsset::Register(U"MainGameUIFont", 45, Typeface::Medium);
 
 	App manager;
 

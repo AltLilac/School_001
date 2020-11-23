@@ -7,6 +7,9 @@
 
 class MainGameScene : public SceneManager<String>::Scene {
 private:
+	enum ShowFlag { START, GOAL, NONE };  // UI を表示するためのフラグ
+	ShowFlag showFlag = START;
+
 	Debug     debug;
 	Player    player;
 	Stopwatch stopwatch;
@@ -24,17 +27,19 @@ private:
 
 	// 壁の描画
 	Array<Rect> blocks = {
-		Rect(100, 0, 100, 300),
+		Rect(100,   0, 100, 300),
 		Rect(300, 100, 100, 500),
-		Rect(500, 0, 100, 500),
-		Rect(700, 100, 35, 400),
-		Rect(735, 100, 25, 50),
-		Rect(700, 200, 35, 100),
-		Rect(775, 200, 25, 50),
-		Rect(735, 300, 25, 50),
-		Rect(775, 400, 25, 100),
-		Rect(700, 500, 5, 100),
+		Rect(500,   0, 100, 500),
+		Rect(700, 100,  35, 400),
+		Rect(735, 100,  25, 50),
+		Rect(700, 200,  35, 100),
+		Rect(775, 200,  25, 50),
+		Rect(735, 300,  25, 50),
+		Rect(775, 400,  25, 100),
+		Rect(700, 500,   5, 100),
 	};
+
+	// スタート・ゴール地点
 
 public:
 	MainGameScene(const InitData& init);
@@ -43,7 +48,8 @@ public:
 
 	void update() override;
 
-	int GetCurrentTime() const { return currentTime; }
+	Rect GetStartArea() const;
+	Rect GetGoalArea()  const;
 };
 
 #endif
