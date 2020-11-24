@@ -7,8 +7,8 @@
 
 class MainGameScene : public SceneManager<String>::Scene {
 private:
-	enum ShowFlag { START, GOAL, NONE };  // UI を表示するためのフラグ
-	ShowFlag showFlag = START;
+	enum ShowFlag { START, GOAL, NONE };  
+	ShowFlag  showFlag;		// UI を表示するためのフラグ
 
 	Debug     debug;
 	Player    player;
@@ -16,14 +16,17 @@ private:
 	Vec2      timeUiPos;	// タイマーの表示位置
 	Point     centerPos;	// シーンの中心座標
 
+	Rect*     startArea;	// スタート地点
+	Rect*     goalArea;		// ゴール地点
+
 	const int defaultTime;  // 制限時間の初期設定
 	int       currentTime;  // 現在の制限時間
 
-	bool isPlaying;			// 制限時間内かどうか
-	bool showTimer;			// 制限時間を表示するためのフラグ
-	bool isDeath;			// プレイヤーの死亡判定
+	bool      isPlaying;	// 制限時間内かどうか
+	bool      showTimer;	// 制限時間を表示するためのフラグ
+	bool      isDeath;		// プレイヤーの死亡判定
 
-	int wallColor;			// 壁の色
+	int       wallColor;	// 壁の色
 
 	// 壁の描画
 	Array<Rect> blocks = {
@@ -45,11 +48,12 @@ public:
 	MainGameScene(const InitData& init);
 
 	void draw() const override;
-
 	void update() override;
 
-	Rect GetStartArea() const;
-	Rect GetGoalArea()  const;
+	void DrawStartAndGoalArea() const;
+
+	Rect GetStartArea() const { return *startArea; }
+	Rect GetGoalArea()  const { return *goalArea; }
 };
 
 #endif

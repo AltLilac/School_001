@@ -4,22 +4,14 @@
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
 	  defaultTime(100), isPlaying(true), showTimer(true), isDeath(false), 
-	  timeUiPos(380, 35), centerPos(400, 300), wallColor(137) {
+	  timeUiPos(380, 35), centerPos(400, 300), wallColor(137), showFlag(START),
+	  startArea(new Rect(0, 0, 100, 100)), goalArea(new Rect(700, 500, 100, 100)) {
 	
 }
 
-Rect MainGameScene::GetStartArea() const {
-	constexpr Rect startArea(0, 0, 100, 100);
-	startArea.draw(Color(0, 206, 201));
-
-	return startArea;
-}
-
-Rect MainGameScene::GetGoalArea() const {
-	constexpr Rect goalArea(700, 500, 100, 100);
-	goalArea.draw(Color(204, 0, 0));
-
-	return goalArea;
+void MainGameScene::DrawStartAndGoalArea() const {
+	startArea->draw(Color(0, 206, 201));
+	goalArea->draw(Color(204, 0, 0));
 }
 
 void MainGameScene::draw() const {
@@ -27,7 +19,14 @@ void MainGameScene::draw() const {
 
 	debug.DrawCoordinate();
 
-	player.DrawPlayer_Test();
+	DrawStartAndGoalArea();
+
+	player.DrawPlayer();
+
+	// 壁の描画
+	for (auto& block : blocks) {
+		block.draw(Color(wallColor));
+	}
 
 	// ストップウォッチが開始したらタイマーを表示
 	if (stopwatch.isStarted() && showTimer) {
@@ -41,13 +40,11 @@ void MainGameScene::draw() const {
 		}
 	}
 
-	/*
 	// StartArea 内だったら
-	if (GetStartArea().contains(player.DrawPlayer()) && showFlag == START) {
+	if (GetStartArea().contains(player.GetPlayer()) && showFlag == START) {
 		FontAsset(U"MainGameUIFont")(U"Game Start!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"MainGameUIFont")(U"Game Start!").drawAt(centerPos);
 	}
-	*/
 
 	// Player が死亡したら
 	if (stopwatch.isPaused() && isDeath) {
@@ -57,10 +54,6 @@ void MainGameScene::draw() const {
 }
 
 void MainGameScene::update() {
-	// スタート地点
-	Rect(0, 0, 100, 100).draw(Color(0, 206, 201));
-	// ゴール地点
-	Rect(700, 500, 100, 100).draw(Color(204, 0, 0));
 
 	// 制限時間内であれば player の操作を受け付ける
 	if (isPlaying) {
@@ -72,20 +65,19 @@ void MainGameScene::update() {
 		showFlag = NONE;
 	}
 
-	/*
 	// プレイヤーがスタート地点から出たら
-	if (!GetStartArea().intersects(player.DrawPlayer())) {
+	if (!GetStartArea().intersects(player.GetPlayer())) {
 		stopwatch.start();
 		showFlag = NONE;
 	}
 	
 
 	// プレイヤーがゴール地点に触れたら
-	if (GetGoalArea().intersects(player.DrawPlayer())) {
+	if (GetGoalArea().intersects(player.GetPlayer())) {
 		showFlag = GOAL;
 
 		// ゴール地点に入ったら
-		if (GetGoalArea().contains(player.DrawPlayer()) && showFlag == GOAL) {
+		if (GetGoalArea().contains(player.GetPlayer()) && showFlag == GOAL) {
 			stopwatch.pause();
 			isPlaying == false;
 
@@ -100,7 +92,7 @@ void MainGameScene::update() {
 	for (auto& block : blocks) {
 		if (!isDeath) {
 			// プレイヤーが壁に当たったら死亡フラグを true にする
-			isDeath = block.intersects(player.DrawPlayer());
+			isDeath = block.intersects(player.GetPlayer());
 		}
 		//// 死亡処理
 		//if (isDeath) {
@@ -114,8 +106,6 @@ void MainGameScene::update() {
 		//	changeScene(U"Result");
 		//	break;
 		//}
-
-		block.draw(Color(wallColor));
 	}
 
 	// 制限時間の初期値から、stopwatch の経過時間を減算
@@ -144,5 +134,4 @@ void MainGameScene::update() {
 	if (stopwatch.isPaused()) {
 		showTimer = false;
 	}
-	*/
 }

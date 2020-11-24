@@ -22,13 +22,11 @@ private:
 public:
 	Player();
 
-	void DrawPlayer_Test() const;
-
-	//Rect DrawPlayer() const;
-
-	Rect GetPlayer() const { return *playerEntity; }
+	void DrawPlayer() const;
 
 	void InputPlayer();
+
+	Rect GetPlayer() const { return *playerEntity; }
 };
 
 #endif

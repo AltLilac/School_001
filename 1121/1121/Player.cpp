@@ -2,29 +2,20 @@
 #include "Player.h"
 
 Player::Player()
-	: posX(35), posY(35), playerPos(posX, posY), playerWidth(25), playerHeight(25), 
+	: posX(35), posY(35), playerPos(posX, posY), playerWidth(30), playerHeight(30), 
 	  delta(100 * Scene::DeltaTime()), 
 	  playerEntity(new Rect(playerPos.x, playerPos.y, playerWidth, playerHeight)) {
 
 }
 
-void Player::DrawPlayer_Test() const {
-	playerEntity->draw(Palette::Lightgrey).drawFrame(0, 4, Color(47));
+void Player::DrawPlayer() const {
+	playerEntity->draw(Palette::Lightgrey).drawFrame(4, 0, Color(47));
 }
-
-/*
-Rect Player::DrawPlayer() const {
-	Rect playerEntity(playerPos.x, playerPos.y, playerWidth, playerHeight);
-
-	playerEntity.draw(Palette::Lightgrey).drawFrame(0, 4, Color(47));
-
-	return playerEntity;
-}
-*/
 
 void Player::InputPlayer() {
 
 	if (KeyW.pressed()) {
+		// playerPos.y -= delta;  “®‚©‚È‚¢
 		playerEntity->y -= delta;
 	}
 	if (KeyS.pressed()) {
