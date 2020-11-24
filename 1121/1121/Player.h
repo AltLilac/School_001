@@ -17,10 +17,16 @@ private:
 	// プレイヤー速度
 	const double delta;
 
+	Rect* playerEntity;
+
 public:
 	Player();
 
-	Rect DrawPlayer() const;
+	void DrawPlayer_Test() const;
+
+	//Rect DrawPlayer() const;
+
+	Rect GetPlayer() const { return *playerEntity; }
 
 	void InputPlayer();
 };

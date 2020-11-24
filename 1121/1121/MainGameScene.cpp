@@ -2,7 +2,9 @@
 #include "MainGameScene.h"
 
 MainGameScene::MainGameScene(const InitData& init)
-	: IScene(init), defaultTime(100), isPlaying(true), showTimer(true), isDeath(false), timeUiPos(380, 35), centerPos(400, 300), wallColor(137) {
+	: IScene(init), 
+	  defaultTime(100), isPlaying(true), showTimer(true), isDeath(false), 
+	  timeUiPos(380, 35), centerPos(400, 300), wallColor(137) {
 	
 }
 
@@ -25,7 +27,7 @@ void MainGameScene::draw() const {
 
 	debug.DrawCoordinate();
 
-	player.DrawPlayer();
+	player.DrawPlayer_Test();
 
 	// ストップウォッチが開始したらタイマーを表示
 	if (stopwatch.isStarted() && showTimer) {
@@ -39,11 +41,13 @@ void MainGameScene::draw() const {
 		}
 	}
 
+	/*
 	// StartArea 内だったら
 	if (GetStartArea().contains(player.DrawPlayer()) && showFlag == START) {
 		FontAsset(U"MainGameUIFont")(U"Game Start!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"MainGameUIFont")(U"Game Start!").drawAt(centerPos);
 	}
+	*/
 
 	// Player が死亡したら
 	if (stopwatch.isPaused() && isDeath) {
@@ -63,20 +67,34 @@ void MainGameScene::update() {
 		player.InputPlayer();
 	}
 
+	if (!GetStartArea().intersects(player.GetPlayer())) {
+		stopwatch.start();
+		showFlag = NONE;
+	}
+
+	/*
 	// プレイヤーがスタート地点から出たら
 	if (!GetStartArea().intersects(player.DrawPlayer())) {
 		stopwatch.start();
 		showFlag = NONE;
 	}
+	
 
+	// プレイヤーがゴール地点に触れたら
 	if (GetGoalArea().intersects(player.DrawPlayer())) {
 		showFlag = GOAL;
-	}
 
-	//　プレイヤーがゴール地点に入ったら
-	if (GetGoalArea().contains(player.DrawPlayer()) && showFlag == GOAL) {
-		stopwatch.pause();
-		isPlaying == false;
+		// ゴール地点に入ったら
+		if (GetGoalArea().contains(player.DrawPlayer()) && showFlag == GOAL) {
+			stopwatch.pause();
+			isPlaying == false;
+
+			FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
+			FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos);
+
+			System::Sleep(3000);
+			changeScene(U"Result");
+		}
 	}
 
 	for (auto& block : blocks) {
@@ -110,6 +128,7 @@ void MainGameScene::update() {
 
 		changeScene(U"Result");
 	}
+	
 
 	// 制限時間が 0 になったら
 	if (currentTime < 0) {
@@ -125,4 +144,5 @@ void MainGameScene::update() {
 	if (stopwatch.isPaused()) {
 		showTimer = false;
 	}
+	*/
 }
