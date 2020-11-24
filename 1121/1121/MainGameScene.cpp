@@ -4,7 +4,7 @@
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
 	  defaultTime(100), isPlaying(true), showTimer(true), isDeath(false), 
-	  timeUiPos(380, 35), centerPos(400, 300), wallColor(137), showFlag(START),
+	  timeUIPos(380, 35), centerPos(400, 300), wallColor(137), showFlag(START),
 	  startArea(new Rect(0, 0, 100, 100)), goalArea(new Rect(700, 500, 100, 100)) {
 	
 }
@@ -30,8 +30,8 @@ void MainGameScene::draw() const {
 
 	// ストップウォッチが開始したらタイマーを表示
 	if (stopwatch.isStarted() && showTimer) {
-		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos.movedBy(2, 2), ColorF(0.0, 0.7));
-		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUiPos);
+		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUIPos.movedBy(2, 2), ColorF(0.0, 0.7));
+		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUIPos);
 
 		// 時間切れになった時の UI
 		if (currentTime <= 0) {
@@ -70,7 +70,6 @@ void MainGameScene::update() {
 		stopwatch.start();
 		showFlag = NONE;
 	}
-	
 
 	// プレイヤーがゴール地点に触れたら
 	if (GetGoalArea().intersects(player.GetPlayer())) {
@@ -118,7 +117,6 @@ void MainGameScene::update() {
 
 		changeScene(U"Result");
 	}
-	
 
 	// 制限時間が 0 になったら
 	if (currentTime < 0) {

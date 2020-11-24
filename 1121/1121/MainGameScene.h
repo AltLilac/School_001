@@ -13,7 +13,7 @@ private:
 	Debug     debug;
 	Player    player;
 	Stopwatch stopwatch;
-	Vec2      timeUiPos;	// タイマーの表示位置
+	Vec2      timeUIPos;	// タイマーの表示位置
 	Point     centerPos;	// シーンの中心座標
 
 	Rect*     startArea;	// スタート地点
