@@ -7,29 +7,8 @@ namespace /* Variable */ {
 	// Set color
 	const int wallColor = 137;
 
-	constexpr Rect startArea(0, 0, 100, 100);
-	constexpr Rect goalArea(700, 500, 100, 100);
-
 	// Timelimit
 	const int defaultTime = 10;
-}
-
-void DrawMainLevel() {
-	// Draw start and goal area
-	startArea.draw(Color(0, 206, 201));
-	goalArea.draw(Color(204, 0, 0));
-
-	// Draw walls
-	Rect(100, 0, 100, 300).draw(Color(wallColor));
-	Rect(300, 100, 100, 500).draw(Color(wallColor));
-	Rect(500, 0, 100, 500).draw(Color(wallColor));
-	Rect(700, 100, 35, 400).draw(Color(wallColor));
-	Rect(735, 100, 25, 50).draw(Color(wallColor));
-	Rect(700, 200, 35, 100).draw(Color(wallColor));
-	Rect(775, 200, 25, 50).draw(Color(wallColor));
-	Rect(735, 300, 25, 50).draw(Color(wallColor));
-	Rect(775, 400, 25, 100).draw(Color(wallColor));
-	Rect(700, 500, 5, 100).draw(Color(wallColor));
 }
 
 void Main() {
@@ -51,7 +30,6 @@ void Main() {
 	bool isPlaying = true;
 
 	while (System::Update()) {
-		DrawMainLevel();
 
 		/* --- Timelimit --- */
 

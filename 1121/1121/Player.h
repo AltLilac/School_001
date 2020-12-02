@@ -3,21 +3,17 @@
 
 class Player {
 private:
-	// スポーン位置
-	const int posX;
-	const int posY;
+	const int    posX;			// 初期スポーンX座標
+	const int    posY;			// 初期スポーンY座標
 
-	// プレイヤー位置
-	Vec2 playerPos;
+	const int    playerWidth;   // プレイヤーの横幅
+	const int    playerHeight;  // プレイヤーの縦幅
 
-	// プレイヤーサイズ
-	const int playerWidth;
-	const int playerHeight;
+	const double delta;			// プレイヤーの座標更新用
 
-	// プレイヤー速度
-	const double delta;
+	Vec2         playerPos;		// プレイヤーの位置
 
-	Rect* playerEntity;
+	Rect*        playerEntity;  // プレイヤー本体
 
 public:
 	Player();

@@ -3,9 +3,10 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(100), isPlaying(true), showTimer(true), isDeath(false), 
-	  timeUIPos(380, 35), centerPos(400, 300), wallColor(137), showFlag(START),
-	  startArea(new Rect(0, 0, 100, 100)), goalArea(new Rect(700, 500, 100, 100)) {
+	  defaultTime(100),   isPlaying(true),     showTimer(true), isDeath(false), 
+	  timeUIPos(380, 35), centerPos(400, 300), wallColor(137),  showFlag(START),
+	  startArea(new Rect(0, 0, 100, 100)), goalArea(new Rect(700, 500, 100, 100)),
+	  font(new Font(45, Typeface::Medium)) {
 	
 }
 
