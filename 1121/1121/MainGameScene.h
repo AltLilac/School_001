@@ -7,28 +7,30 @@
 
 class MainGameScene : public SceneManager<String>::Scene {
 private:
-	enum ShowFlag { START, GOAL, NONE };  
-	ShowFlag    showFlag;	  // UI を表示するためのフラグ
-
 	Debug       debug;
+
+	enum ShowFlag { START, GOAL, NONE };  
+	ShowFlag    showFlag;		// UI を表示するためのフラグ
+
 	Player      player;
-	Stopwatch   stopwatch;
-	Vec2        timeUIPos;	  // タイマーの表示位置
-	Point       centerPos;	  // シーンの中心座標
+	Stopwatch   timeSW;			// 制限時間用のストップウォッチ
+	Stopwatch   delaySW;		// 遅延処理用のストップウォッチ
+	Vec2        timeUIPos;		// タイマーの表示位置
+	Point       centerPos;		// シーンの中心座標
 
-	Rect*       startArea;	  // スタート地点
-	Rect*       goalArea;	  // ゴール地点
+	Rect*       startArea;		// スタート地点
+	Rect*       goalArea;		// ゴール地点
 
-	const Font* font;		  // UI用フォント
+	const int   defaultTime;	// 制限時間の初期設定
+	int         currentTime;	// 現在の制限時間
 
-	const int   defaultTime;  // 制限時間の初期設定
-	int         currentTime;  // 現在の制限時間
+	double		delayTime;		// 遅延処理にかける時間
 
-	bool        isPlaying;	  // 制限時間内かどうか
-	bool        showTimer;	  // 制限時間を表示するためのフラグ
-	bool        isDeath;	  // プレイヤーの死亡判定
+	bool        isPlaying;		// 制限時間内かどうか
+	bool        showTimer;		// 制限時間を表示するためのフラグ
+	bool        isDeath;		// プレイヤーの死亡判定
 
-	int         wallColor;	  // 壁の色
+	int         wallColor;		// 壁の色
 
 	// 壁の描画
 	Array<Rect> blocks = {

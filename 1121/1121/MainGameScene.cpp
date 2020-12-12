@@ -3,7 +3,7 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(100),							// 制限時間
+	  defaultTime(10),							// 制限時間
 	  isPlaying(true),							// 制限時間内かどうか
 	  showTimer(true),							// true なら制限時間を表示
 	  isDeath(false),							// プレイヤーの死亡判定
@@ -13,7 +13,7 @@ MainGameScene::MainGameScene(const InitData& init)
 	  showFlag(START),							// UI を表示するフラグを enum で管理
 	  startArea(new Rect(0, 0, 100, 100)),		// スタートエリアを生成する位置
 	  goalArea(new Rect(700, 500, 100, 100)),	// ゴールエリアを生成する位置
-	  font(new Font(45, Typeface::Medium)) 
+	  delayTime(3.0)							// 遅延処理にかける時間
 {
 	
 }
@@ -38,15 +38,15 @@ void MainGameScene::draw() const {
 	}
 
 	// ストップウォッチが開始したらタイマーを表示
-	if (stopwatch.isStarted() && showTimer) {
+	if (timeSW.isStarted() && showTimer) {
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUIPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"TimeLimitFont")(U"{}{}{}"_fmt(U"Time", U" : ", currentTime)).drawAt(timeUIPos);
+	}
 
-		// 時間切れになった時の UI
-		if (currentTime <= 0) {
-			FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
-			FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos);
-		}
+	// 時間切れになった時の UI
+	if (currentTime < 0) {
+		FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
+		FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos);
 	}
 
 	// StartArea 内だったら
@@ -55,8 +55,14 @@ void MainGameScene::draw() const {
 		FontAsset(U"MainGameUIFont")(U"Game Start!").drawAt(centerPos);
 	}
 
+	// GoalArea 内だったら
+	if (GetGoalArea().contains(player.GetPlayer()) && showFlag == GOAL) {
+		FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
+		FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos);
+	}
+
 	// Player が死亡したら
-	if (stopwatch.isPaused() && isDeath) {
+	if (isDeath) {
 		FontAsset(U"MainGameUIFont")(U"You Died!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"MainGameUIFont")(U"You Died!").drawAt(centerPos);
 	}
@@ -69,14 +75,9 @@ void MainGameScene::update() {
 		player.InputPlayer();
 	}
 
-	if (!GetStartArea().intersects(player.GetPlayer())) {
-		stopwatch.start();
-		showFlag = NONE;
-	}
-
 	// プレイヤーがスタート地点から出たら
 	if (!GetStartArea().intersects(player.GetPlayer())) {
-		stopwatch.start();
+		timeSW.start();
 		showFlag = NONE;
 	}
 
@@ -86,59 +87,53 @@ void MainGameScene::update() {
 
 		// ゴール地点に入ったら
 		if (GetGoalArea().contains(player.GetPlayer()) && showFlag == GOAL) {
-			stopwatch.pause();
-			isPlaying == false;
+			timeSW.pause();
+			isPlaying = false;
 
-			FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
-			FontAsset(U"MainGameUIFont")(U"Game Clear!").drawAt(centerPos);
-
-			System::Sleep(3000);
-			changeScene(U"Result");
+			delaySW.start();
+			// ストップウォッチの経過時間が delayTime を超えたら
+			if (delaySW.sF() > delayTime) {
+				changeScene(U"Result");
+			}
 		}
 	}
 
+	// ブロックの当たり判定を用意
 	for (auto& block : blocks) {
-		if (!isDeath) {
-			// プレイヤーが壁に当たったら死亡フラグを true にする
-			isDeath = block.intersects(player.GetPlayer());
-		}
-		//// 死亡処理
-		//if (isDeath) {
-		//	stopwatch.pause();
-		//	// 死亡時のUI
-		//	FontAsset(U"MainGameUiFont")(U"You Died!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
-		//	FontAsset(U"MainGameUiFont")(U"You Died!").drawAt(centerPos);
-		//	
-		//	System::Sleep(3000);
 
-		//	changeScene(U"Result");
-		//	break;
-		//}
+		if (block.intersects(player.GetPlayer())) {
+			isPlaying = false;
+			showTimer = false;
+			isDeath = true;
+
+			timeSW.pause();
+
+			delaySW.start();
+			// ストップウォッチの経過時間が delayTime を超えたら
+			if (delaySW.sF() > delayTime) {
+				changeScene(U"GameOver");
+			}
+		}
 	}
 
 	// 制限時間の初期値から、stopwatch の経過時間を減算
-	currentTime = defaultTime - stopwatch.s64();
-
-	// プレイヤーが壁に当たったら
-	if (isDeath) {
-		stopwatch.pause();
-		System::Sleep(3000);  // 3 秒間スレッドの実行を停止
-
-		changeScene(U"GameOver");
-	}
+	currentTime = defaultTime - timeSW.s64();
 
 	// 制限時間が 0 になったら
 	if (currentTime < 0) {
 		isPlaying = false;
 
-		stopwatch.pause();
-		System::Sleep(3000);
+		timeSW.pause();
 
-		changeScene(U"GameOver");
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
 	}
 
 	// stopwatch が pause であれば制限時間 UI を消去
-	if (stopwatch.isPaused()) {
+	if (timeSW.isPaused()) {
 		showTimer = false;
 	}
 }
