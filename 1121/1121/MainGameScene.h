@@ -32,9 +32,13 @@ private:
 
 	int         wallColor;		// 壁の色
 
+	Rect* rect1;
+	Rect* rect2;
+	double x;
+
 	// 壁の描画
 	Array<Rect> blocks = {
-		Rect(100,   0, 100, 300),
+		Rect(100,   0, 100, 500),
 		Rect(200,   0, 300,  55),
 		Rect(300, 100, 100, 500),
 		Rect(500,   0, 100, 500),
@@ -60,6 +64,7 @@ public:
 	void update() override;
 
 	void DrawStartAndGoalArea() const;
+	void DrawObstacles();
 
 	// スタートエリアとゴールエリアの判定を取得
 	Rect GetStartArea() const { return *startArea; }

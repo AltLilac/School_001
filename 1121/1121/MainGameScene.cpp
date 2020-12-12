@@ -23,6 +23,30 @@ void MainGameScene::DrawStartAndGoalArea() const {
 	goalArea->draw(Color(204, 0, 0));
 }
 
+void MainGameScene::DrawObstacles(){
+	x = 800 * Periodic::Triangle0_1(2s);
+
+	rect1 = new Rect(x, 300, 50, 50);
+	rect2 = new Rect(x, 500, 50, 50);
+
+	rect1->draw(Color(wallColor));
+	rect2->draw(Color(wallColor));
+
+	if (rect1->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+}
+
 void MainGameScene::draw() const {
 	Scene::SetBackground(Color(230));	// 背景色の設定
 
@@ -69,6 +93,8 @@ void MainGameScene::draw() const {
 }
 
 void MainGameScene::update() {
+
+	DrawObstacles();
 
 	// 制限時間内であれば player の操作を受け付ける
 	if (isPlaying) {
