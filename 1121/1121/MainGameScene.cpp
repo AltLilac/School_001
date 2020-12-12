@@ -44,7 +44,7 @@ void MainGameScene::draw() const {
 	}
 
 	// ŠÔØ‚ê‚É‚È‚Á‚½‚Ì UI
-	if (currentTime < 0) {
+	if (currentTime < 0 && !isPlaying) {
 		FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos.movedBy(2, 2), ColorF(0.0, 0.7));
 		FontAsset(U"MainGameUIFont")(U"Time Over!").drawAt(centerPos);
 	}
