@@ -15,7 +15,6 @@ void Player::DrawPlayer() const {
 void Player::InputPlayer() {
 
 	if (KeyW.pressed()) {
-		// playerPos.y -= delta;  “®‚©‚È‚¢
 		playerEntity->y -= delta;
 	}
 	if (KeyS.pressed()) {
