@@ -7,15 +7,15 @@
 
 class ResultScene : public SceneManager<String>::Scene {
 private:
-	Debug debug;
-	Point pressKeyPos;
-	// MainGameScene mGameScene;
+	Debug		   debug;
+	Point		   pressKeyPos;
+
+	MainGameScene* mGameScene;
 
 public:
 	ResultScene(const InitData& init);
 
 	void draw() const override;
-	
 	void update() override;
 };
 

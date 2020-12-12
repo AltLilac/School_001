@@ -5,6 +5,7 @@
 #include "TitleScene.h"
 #include "MainGameScene.h"
 #include "ResultScene.h"
+#include "GameOverScene.h"
 
 using App = SceneManager<String>;
 
@@ -19,6 +20,7 @@ void Main() {
 	manager.add<TitleScene>(U"Title");
 	manager.add<MainGameScene>(U"MainGame");
 	manager.add<ResultScene>(U"Result");
+	manager.add<GameOverScene>(U"GameOver");
 
 	while (System::Update()) {
 

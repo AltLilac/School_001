@@ -3,11 +3,18 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(100),   isPlaying(true),     showTimer(true), isDeath(false), 
-	  timeUIPos(380, 35), centerPos(400, 300), wallColor(137),  showFlag(START),
-	  startArea(new Rect(0, 0, 100, 100)), 
-	  goalArea(new Rect(700, 500, 100, 100)),
-	  font(new Font(45, Typeface::Medium)) {
+	  defaultTime(100),							// 制限時間
+	  isPlaying(true),							// 制限時間内かどうか
+	  showTimer(true),							// true なら制限時間を表示
+	  isDeath(false),							// プレイヤーの死亡判定
+	  timeUIPos(380, 35),						// 制限時間を表示する位置
+	  centerPos(400, 300),						// ゲーム進行に応じた UI を描画するための位置を取得（画面中央）
+	  wallColor(137),							// 壁の色
+	  showFlag(START),							// UI を表示するフラグを enum で管理
+	  startArea(new Rect(0, 0, 100, 100)),		// スタートエリアを生成する位置
+	  goalArea(new Rect(700, 500, 100, 100)),	// ゴールエリアを生成する位置
+	  font(new Font(45, Typeface::Medium)) 
+{
 	
 }
 
@@ -117,7 +124,7 @@ void MainGameScene::update() {
 		stopwatch.pause();
 		System::Sleep(3000);  // 3 秒間スレッドの実行を停止
 
-		changeScene(U"Result");
+		changeScene(U"GameOver");
 	}
 
 	// 制限時間が 0 になったら
@@ -127,7 +134,7 @@ void MainGameScene::update() {
 		stopwatch.pause();
 		System::Sleep(3000);
 
-		changeScene(U"Result");
+		changeScene(U"GameOver");
 	}
 
 	// stopwatch が pause であれば制限時間 UI を消去

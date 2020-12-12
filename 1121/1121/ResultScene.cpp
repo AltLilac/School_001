@@ -1,7 +1,11 @@
 #include <Siv3D.hpp>
 #include "ResultScene.h"
 
-ResultScene::ResultScene(const InitData& init) : IScene(init), pressKeyPos(400, 460) {
+ResultScene::ResultScene(const InitData& init)
+	: IScene(init), 
+	  mGameScene(new MainGameScene(init)),
+	  pressKeyPos(400, 460) 
+{
 
 }
 

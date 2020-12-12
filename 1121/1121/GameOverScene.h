@@ -7,12 +7,12 @@
 class GameOverScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
+	Point pressKeyPos;
 
 public:
 	GameOverScene(const InitData& init);
 
 	void draw() const override;
-
 	void update() override;
 };
 
