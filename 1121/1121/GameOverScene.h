@@ -7,7 +7,7 @@
 class GameOverScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
-	Point pressKeyPos;
+	Point pressKeyUIPos;
 
 public:
 	GameOverScene(const InitData& init);

@@ -7,7 +7,7 @@
 class TitleScene : public SceneManager<String>::Scene {
 private:
 	Debug debug;
-	Point titlePos, pressKeyPos;
+	Point titlePos, pressKeyUIPos;
 
 public:
 	TitleScene(const InitData& init);

@@ -7,7 +7,7 @@ MainGameScene::MainGameScene(const InitData& init)
 	  isPlaying(true),							// 制限時間内かどうか
 	  showTimer(true),							// true なら制限時間を表示
 	  isDeath(false),							// プレイヤーの死亡判定
-	  timeUIPos(380, 35),						// 制限時間を表示する位置
+	  timeUIPos(380, 25),						// 制限時間を表示する位置
 	  centerPos(400, 300),						// ゲーム進行に応じた UI を描画するための位置を取得（画面中央）
 	  wallColor(137),							// 壁の色
 	  showFlag(START),							// UI を表示するフラグを enum で管理
@@ -24,13 +24,13 @@ void MainGameScene::DrawStartAndGoalArea() const {
 }
 
 void MainGameScene::draw() const {
-	Scene::SetBackground(Color(230));
+	Scene::SetBackground(Color(230));	// 背景色の設定
 
 	debug.DrawCoordinate();
 
-	DrawStartAndGoalArea();
+	DrawStartAndGoalArea();				// スタートエリアとゴールエリアの描画
 
-	player.DrawPlayer();
+	player.DrawPlayer();				// プレイヤーの描画
 
 	// 壁の描画
 	for (auto& block : blocks) {

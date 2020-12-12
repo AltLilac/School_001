@@ -11,7 +11,7 @@ using App = SceneManager<String>;
 
 void Main() {
 	FontAsset::Register(U"TitleFont", 60, Typeface::Medium);
-	FontAsset::Register(U"TimeLimitFont", 45, Typeface::Medium);
+	FontAsset::Register(U"TimeLimitFont", 35, Typeface::Medium);
 	FontAsset::Register(U"ResultFont", 45, Typeface::Medium);
 	FontAsset::Register(U"MainGameUIFont", 45, Typeface::Medium);
 

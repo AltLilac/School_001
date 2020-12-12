@@ -33,6 +33,7 @@ private:
 	// 壁の描画
 	Array<Rect> blocks = {
 		Rect(100,   0, 100, 300),
+		Rect(200,   0, 300,  55),
 		Rect(300, 100, 100, 500),
 		Rect(500,   0, 100, 500),
 		Rect(700, 100,  35, 400),
@@ -50,8 +51,6 @@ private:
 		Rect(  0, 600, 800,  10),	// 下側
 	};
 
-	// スタート・ゴール地点
-
 public:
 	MainGameScene(const InitData& init);
 
@@ -60,6 +59,7 @@ public:
 
 	void DrawStartAndGoalArea() const;
 
+	// スタートエリアとゴールエリアの判定を取得
 	Rect GetStartArea() const { return *startArea; }
 	Rect GetGoalArea()  const { return *goalArea; }
 };
