@@ -2,11 +2,9 @@
 #define ___TITLESCENE
 
 #include <Siv3D.hpp>
-#include "Debug.h"
 
 class TitleScene : public SceneManager<String>::Scene {
 private:
-	Debug debug;
 	Point titleUIPos, pressKeyUIPos;
 
 public:

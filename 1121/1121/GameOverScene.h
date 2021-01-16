@@ -2,11 +2,9 @@
 #define ___GAMEOVERSCENE
 
 #include <Siv3D.hpp>
-#include "Debug.h"
 
 class GameOverScene : public SceneManager<String>::Scene {
 private:
-	Debug debug;
 	Point pressKeyUIPos;
 	Point mainUIPos;
 

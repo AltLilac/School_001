@@ -240,9 +240,8 @@
   <ItemGroup>
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGameScene.cpp" />
-    <ClCompile Include="Main_Test.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="TitleScene.cpp" />

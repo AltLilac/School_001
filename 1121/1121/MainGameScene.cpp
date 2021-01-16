@@ -3,7 +3,7 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(1000),						// 制限時間
+	  defaultTime(100),						// 制限時間
 	  isPlaying(true),							// 制限時間内かどうか
 	  showTimer(true),							// true なら制限時間を表示
 	  isDeath(false),							// プレイヤーの死亡判定
@@ -115,8 +115,6 @@ void MainGameScene::GameOverProcess() {
 
 void MainGameScene::draw() const {
 	Scene::SetBackground(Color(220));	// 背景色の設定
-
-	debug.DrawCoordinate();
 
 	DrawStartAndGoalArea();				// スタートエリアとゴールエリアの描画
 

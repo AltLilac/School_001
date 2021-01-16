@@ -11,8 +11,6 @@ ResultScene::ResultScene(const InitData& init)
 }
 
 void ResultScene::draw() const {
-	debug.DrawCoordinate();
-
 	Scene::SetBackground(Color(220));
 
 	FontAsset(U"ResultFont")(U"You Win").drawAt(mainUIPos.movedBy(2, 2), ColorF(0.0, 0.7));

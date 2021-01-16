@@ -388,9 +388,6 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main_Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainGameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

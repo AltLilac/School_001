@@ -2,13 +2,10 @@
 #define ___MAINGAMESCENE
 
 #include <Siv3D.hpp>
-#include "Debug.h"
 #include "Player.h"
 
 class MainGameScene : public SceneManager<String>::Scene {
 private:
-	Debug       debug;
-
 	enum ShowFlag { START, GOAL, NONE };  
 	ShowFlag    showFlag;		// UI ‚ð•\Ž¦‚·‚é‚½‚ß‚Ìƒtƒ‰ƒO
 

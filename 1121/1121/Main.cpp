@@ -1,76 +1,32 @@
-﻿#define SHOW 0
+#define SHOW 1
 #if SHOW == 1
 
 #include <Siv3D.hpp>
+#include "TitleScene.h"
+#include "MainGameScene.h"
+#include "ResultScene.h"
+#include "GameOverScene.h"
 
-namespace /* Variable */ {
-	// Set color
-	const int wallColor = 137;
-
-	// Timelimit
-	const int defaultTime = 10;
-}
+using App = SceneManager<String>;
 
 void Main() {
-	const     Font font(40, Typeface::Medium);
-	constexpr Vec2 timeUIPos(380, 35);
+	FontAsset::Register(U"TitleFont", 60, Typeface::Medium);
+	FontAsset::Register(U"TimeLimitFont", 35, Typeface::Medium);
+	FontAsset::Register(U"ResultFont", 45, Typeface::Medium);
+	FontAsset::Register(U"MainGameUIFont", 45, Typeface::Medium);
 
-	// 制限時間用ストップウォッチ
-	Stopwatch stopwatch;
+	App manager;
 
-	// UI massages show flag
-	enum ShowFlag {
-		START,
-		GOAL,
-		NONE,
-	};
-
-	ShowFlag showFlag = START;
-
-	bool isPlaying = true;
+	manager.add<TitleScene>(U"Title");
+	manager.add<MainGameScene>(U"MainGame");
+	manager.add<ResultScene>(U"Result");
+	manager.add<GameOverScene>(U"GameOver");
 
 	while (System::Update()) {
 
-		/* --- Timelimit --- */
-
-		// スタート地点から出たらカウントダウン開始
-		if (!startArea.contains(playerEntity)) {
-			stopwatch.start();
+		if (!manager.update()) {
+			break;
 		}
-
-		// 時間切れ
-		if (currentTime <= 0) {
-			stopwatch.pause();
-			isPlaying = false;
-			font(U"{}{}"_fmt(U"Time ", U"over!")).draw(Arg::center(Scene::Center()));
-		}
-
-		////////////////////////////////////////////////////////////////////////////
-
-
-		/* --- UI massages --- */
-
-
-		if (startArea.contains(playerEntity) && showFlag == START) {
-			font(U"{}{}"_fmt(U"Game ", U"start!")).draw(Arg::center(Scene::Center()));
-		}
-
-		if (!startArea.contains(playerEntity)) {
-			showFlag = NONE;
-		}
-
-		if (goalArea.intersects(playerEntity)) {
-			showFlag = GOAL;
-
-			if (goalArea.contains(playerEntity) && showFlag == GOAL) {
-				stopwatch.pause();
-				isPlaying = false;
-				font(U"{}{}"_fmt(U"Game ", U"clear!")).draw(Arg::center(Scene::Center()));
-				// Open to result level
-			}
-		}
-
-		////////////////////////////////////////////////////////////////////////////
 	}
 }
 

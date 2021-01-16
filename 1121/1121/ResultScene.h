@@ -2,12 +2,10 @@
 #define ___RESULTSCENE
 
 #include <Siv3D.hpp>
-#include "Debug.h"
 #include "MainGameScene.h"
 
 class ResultScene : public SceneManager<String>::Scene {
 private:
-	Debug		   debug;
 	Point		   pressKeyUIPos;
 	Point		   mainUIPos;
 
