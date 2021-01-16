@@ -2,9 +2,14 @@
 #include "Player.h"
 
 Player::Player()
-	: posX(35), posY(35), playerPos(posX, posY), playerWidth(30), playerHeight(30), 
+	: posX(35), 
+	  posY(35), 
+	  playerPos(posX, posY), 
+	  playerWidth(30), 
+	  playerHeight(30), 
 	  delta(100 * Scene::DeltaTime()), 
-	  playerEntity(new Rect(playerPos.x, playerPos.y, playerWidth, playerHeight)) {
+	  playerEntity(new Rect(playerPos.x, playerPos.y, playerWidth, playerHeight)) 
+{
 
 }
 

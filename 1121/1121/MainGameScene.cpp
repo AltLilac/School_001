@@ -23,14 +23,18 @@ void MainGameScene::DrawStartAndGoalArea() const {
 	goalArea->draw(Color(204, 0, 0));
 }
 
-void MainGameScene::DrawObstacles(){
-	x = 800 * Periodic::Triangle0_1(2s);
+// “®‚­áŠQ•¨‚Ì•`‰æ
+void MainGameScene::DrawObstacles() {
+	double x1 = 350 * Periodic::Triangle0_1(8s);
+	double x2 = 350 * Periodic::Triangle0_1(5s);
 
-	rect1 = new Rect(x, 300, 50, 50);
-	rect2 = new Rect(x, 500, 50, 50);
+	Rect* rect1 = new Rect(x1, 300, 50, 50);
+	Rect* rect2 = new Rect(x1, 500, 50, 50);
+	Rect* rect3 = new Rect(x2, 550, 50, 50);
 
 	rect1->draw(Color(wallColor));
 	rect2->draw(Color(wallColor));
+	rect3->draw(Color(wallColor));
 
 	if (rect1->intersects(player.GetPlayer())) {
 		isPlaying = false;

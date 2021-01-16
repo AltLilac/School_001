@@ -32,10 +32,6 @@ private:
 
 	int         wallColor;		// •Ç‚ÌF
 
-	Rect* rect1;
-	Rect* rect2;
-	double x;
-
 	// •Ç‚Ì•`‰æ
 	Array<Rect> blocks = {
 		Rect(100,   0, 100, 500),
