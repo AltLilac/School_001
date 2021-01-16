@@ -3,7 +3,7 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(100),						// §ŒÀŠÔ
+	  defaultTime(100),						    // §ŒÀŠÔ
 	  isPlaying(true),							// §ŒÀŠÔ“à‚©‚Ç‚¤‚©
 	  showTimer(true),							// true ‚È‚ç§ŒÀŠÔ‚ğ•\¦
 	  isDeath(false),							// ƒvƒŒƒCƒ„[‚Ì€–S”»’è
@@ -25,12 +25,12 @@ void MainGameScene::DrawStartAndGoalArea() const {
 
 // “®‚­áŠQ•¨‚Ì•`‰æ
 void MainGameScene::DrawObstacles() {
-	double x1 = 450 * Periodic::Triangle0_1(5s);
-	double x2 = 650 * Periodic::Triangle0_1(9s);
+	double x1 = 450 * Periodic::Triangle0_1(6s);
+	double x2 = 650 * Periodic::Triangle0_1(10s);
 	double x3 = 650 * Periodic::Triangle0_1(12s);
-	double x4 = 450 * Periodic::Triangle0_1(7s);
-	double x5 = 450 * Periodic::Triangle0_1(9s);
-	double x6 = 450 * Periodic::Triangle0_1(11s);
+	double x4 = 450 * Periodic::Triangle0_1(8s);
+	double x5 = 450 * Periodic::Triangle0_1(10s);
+	double x6 = 450 * Periodic::Triangle0_1(12s);
 
 	double y1 = -50 * Periodic::Triangle0_1(12s);
 	double y2 = 450 * Periodic::Triangle0_1(10s);
