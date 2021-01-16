@@ -59,143 +59,57 @@ void MainGameScene::DrawObstacles() {
 	rect10->draw(Color(wallColor));
 
 	if (rect1->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect2->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect3->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect4->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect5->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect6->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect7->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect8->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect9->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
-
-		timeSW.pause();
-
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+		GameOverProcess();
 	}
 
 	if (rect10->intersects(player.GetPlayer())) {
-		isPlaying = false;
-		showTimer = false;
-		isDeath = true;
+		GameOverProcess();
+	}
+}
 
-		timeSW.pause();
+void MainGameScene::GameOverProcess() {
+	isPlaying = false;
+	showTimer = false;
+	isDeath = true;
 
-		delaySW.start();
-		// ストップウォッチの経過時間が delayTime を超えたら
-		if (delaySW.sF() > delayTime) {
-			changeScene(U"GameOver");
-		}
+	timeSW.pause();
+
+	delaySW.start();
+	// ストップウォッチの経過時間が delayTime を超えたら
+	if (delaySW.sF() > delayTime) {
+		changeScene(U"GameOver");
 	}
 }
 

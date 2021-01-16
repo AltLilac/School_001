@@ -59,12 +59,14 @@ public:
 	void draw() const override;
 	void update() override;
 
-	void DrawStartAndGoalArea() const;
-	void DrawObstacles();
+	void DrawStartAndGoalArea() const;					// スタート地点とゴール地点の描画
+	void DrawObstacles();								// 動く障害物の描画
 
 	// スタートエリアとゴールエリアの判定を取得
 	Rect GetStartArea() const { return *startArea; }
 	Rect GetGoalArea()  const { return *goalArea; }
+
+	void GameOverProcess();								// ゲームオーバー時の処理
 };
 
 #endif
