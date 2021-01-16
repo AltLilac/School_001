@@ -3,7 +3,7 @@
 
 MainGameScene::MainGameScene(const InitData& init)
 	: IScene(init), 
-	  defaultTime(10),							// 制限時間
+	  defaultTime(1000),						// 制限時間
 	  isPlaying(true),							// 制限時間内かどうか
 	  showTimer(true),							// true なら制限時間を表示
 	  isDeath(false),							// プレイヤーの死亡判定
@@ -26,27 +26,26 @@ void MainGameScene::DrawStartAndGoalArea() const {
 // 動く障害物の描画
 void MainGameScene::DrawObstacles() {
 	double x1 = 450 * Periodic::Triangle0_1(5s);
-	double x2 = 650 * Periodic::Triangle0_1(7s);
-	double x3 = 650 * Periodic::Triangle0_1(10s);
-	double x4 = 450 * Periodic::Triangle0_1(4s);
-	double x5 = 450 * Periodic::Triangle0_1(7s);
-	double x6 = 450 * Periodic::Triangle0_1(3s);
+	double x2 = 650 * Periodic::Triangle0_1(9s);
+	double x3 = 650 * Periodic::Triangle0_1(12s);
+	double x4 = 450 * Periodic::Triangle0_1(7s);
+	double x5 = 450 * Periodic::Triangle0_1(9s);
+	double x6 = 450 * Periodic::Triangle0_1(11s);
 
-	double y1 = -50 * Periodic::Triangle0_1(8s);
+	double y1 = -50 * Periodic::Triangle0_1(12s);
 	double y2 = 450 * Periodic::Triangle0_1(10s);
 	double y3 = 450 * Periodic::Triangle0_1(20s);
 
 	Rect* rect1 = new Rect(x1, 200, 50, 50);
 	Rect* rect2 = new Rect(x2, 500, 50, 50);
-	Rect* rect3 = new Rect(x3, 550, 50, 50);
-	Rect* rect4 = new Rect(200, y1, 600, 100);
-	Rect* rect5 = new Rect(600, y2, 50, 50);
-	Rect* rect6 = new Rect(650, y3, 50, 50);
-	Rect* rect7 = new Rect(x4, 250, 50, 50);
-	Rect* rect8 = new Rect(x5, 300, 50, 50);
-	Rect* rect9 = new Rect(x6, 350, 50, 50);
-	Rect* rect10 = new Rect(x1, 400, 50, 50);
-	Rect* rect11 = new Rect(x5, 450, 50, 50);
+	Rect* rect3 = new Rect(200, y1, 600, 100);
+	Rect* rect4 = new Rect(600, y2, 50, 50);
+	Rect* rect5 = new Rect(650, y3, 50, 50);
+	Rect* rect6 = new Rect(x4, 250, 50, 50);
+	Rect* rect7 = new Rect(x5, 300, 50, 50);
+	Rect* rect8 = new Rect(x6, 350, 50, 50);
+	Rect* rect9 = new Rect(x1, 400, 50, 50);
+	Rect* rect10 = new Rect(x5, 450, 50, 50);
 
 	rect1->draw(Color(wallColor));
 	rect2->draw(Color(wallColor));
@@ -58,10 +57,134 @@ void MainGameScene::DrawObstacles() {
 	rect8->draw(Color(wallColor));
 	rect9->draw(Color(wallColor));
 	rect10->draw(Color(wallColor));
-	rect11->draw(Color(wallColor));
 
-	// 逆にする？
 	if (rect1->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect2->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect3->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect4->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect5->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect6->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect7->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect8->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect9->intersects(player.GetPlayer())) {
+		isPlaying = false;
+		showTimer = false;
+		isDeath = true;
+
+		timeSW.pause();
+
+		delaySW.start();
+		// ストップウォッチの経過時間が delayTime を超えたら
+		if (delaySW.sF() > delayTime) {
+			changeScene(U"GameOver");
+		}
+	}
+
+	if (rect10->intersects(player.GetPlayer())) {
 		isPlaying = false;
 		showTimer = false;
 		isDeath = true;
@@ -77,7 +200,7 @@ void MainGameScene::DrawObstacles() {
 }
 
 void MainGameScene::draw() const {
-	Scene::SetBackground(Color(230));	// 背景色の設定
+	Scene::SetBackground(Color(220));	// 背景色の設定
 
 	debug.DrawCoordinate();
 

@@ -8,13 +8,13 @@ Player::Player()
 	  playerWidth(30), 
 	  playerHeight(30), 
 	  delta(100 * Scene::DeltaTime()), 
-	  playerEntity(new Rect(playerPos.x, playerPos.y, playerWidth, playerHeight)) 
+	  playerEntity(new RectF(playerPos.x, playerPos.y, playerWidth, playerHeight)) 
 {
 
 }
 
 void Player::DrawPlayer() const {
-	playerEntity->draw(Palette::Lightgrey).drawFrame(4, 0, Color(47));
+	playerEntity->draw(Color(220)).drawFrame(4, 0, Color(47));
 }
 
 void Player::InputPlayer() {

@@ -13,7 +13,7 @@ private:
 
 	Vec2         playerPos;		// プレイヤーの位置
 
-	Rect*        playerEntity;  // プレイヤー本体
+	RectF*       playerEntity;  // プレイヤー本体
 
 public:
 	Player();
@@ -22,7 +22,7 @@ public:
 
 	void InputPlayer();
 
-	Rect GetPlayer() const { return *playerEntity; }
+	RectF GetPlayer() const { return *playerEntity; }
 };
 
 #endif
