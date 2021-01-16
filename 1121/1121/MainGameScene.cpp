@@ -25,17 +25,42 @@ void MainGameScene::DrawStartAndGoalArea() const {
 
 // “®‚­áŠQ•¨‚Ì•`‰æ
 void MainGameScene::DrawObstacles() {
-	double x1 = 350 * Periodic::Triangle0_1(8s);
-	double x2 = 350 * Periodic::Triangle0_1(5s);
+	double x1 = 450 * Periodic::Triangle0_1(5s);
+	double x2 = 650 * Periodic::Triangle0_1(7s);
+	double x3 = 650 * Periodic::Triangle0_1(10s);
+	double x4 = 450 * Periodic::Triangle0_1(4s);
+	double x5 = 450 * Periodic::Triangle0_1(7s);
+	double x6 = 450 * Periodic::Triangle0_1(3s);
 
-	Rect* rect1 = new Rect(x1, 300, 50, 50);
-	Rect* rect2 = new Rect(x1, 500, 50, 50);
-	Rect* rect3 = new Rect(x2, 550, 50, 50);
+	double y1 = -50 * Periodic::Triangle0_1(8s);
+	double y2 = 450 * Periodic::Triangle0_1(10s);
+	double y3 = 450 * Periodic::Triangle0_1(20s);
+
+	Rect* rect1 = new Rect(x1, 200, 50, 50);
+	Rect* rect2 = new Rect(x2, 500, 50, 50);
+	Rect* rect3 = new Rect(x3, 550, 50, 50);
+	Rect* rect4 = new Rect(200, y1, 600, 100);
+	Rect* rect5 = new Rect(600, y2, 50, 50);
+	Rect* rect6 = new Rect(650, y3, 50, 50);
+	Rect* rect7 = new Rect(x4, 250, 50, 50);
+	Rect* rect8 = new Rect(x5, 300, 50, 50);
+	Rect* rect9 = new Rect(x6, 350, 50, 50);
+	Rect* rect10 = new Rect(x1, 400, 50, 50);
+	Rect* rect11 = new Rect(x5, 450, 50, 50);
 
 	rect1->draw(Color(wallColor));
 	rect2->draw(Color(wallColor));
 	rect3->draw(Color(wallColor));
+	rect4->draw(Color(wallColor));
+	rect5->draw(Color(wallColor));
+	rect6->draw(Color(wallColor));
+	rect7->draw(Color(wallColor));
+	rect8->draw(Color(wallColor));
+	rect9->draw(Color(wallColor));
+	rect10->draw(Color(wallColor));
+	rect11->draw(Color(wallColor));
 
+	// ‹t‚É‚·‚éH
 	if (rect1->intersects(player.GetPlayer())) {
 		isPlaying = false;
 		showTimer = false;
